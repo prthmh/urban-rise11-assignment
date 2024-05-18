@@ -39,7 +39,7 @@ const PedicureProduct = ({ item }) => {
             alt={item.title}
             className=" object-contain size-[120px]"
           />
-          <button className="py-[6px] px-6 w-fit border-add-cart-color border rounded-lg shadow-lg text-add-cart-text font-semibold text-sm bg-white relative bottom-4">
+          <button className="py-[4px] px-4 sm:py-[6px] sm:px-6 w-fit border-add-cart-color border rounded-lg shadow-lg text-add-cart-text font-semibold text-sm bg-white relative bottom-6 sm:bottom-4">
             Add{" "}
           </button>
         </div>
