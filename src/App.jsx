@@ -14,7 +14,7 @@ import { useCart } from "./context/CartContext";
 const App = () => {
   const [openMenuModal, setOpenMenuModal] = useState(false);
   const [fix, setFix] = useState(false);
-  const { totalCartCost, totalConstNoDiscount } = useCart();
+  const { cart, totalCartCost, totalConstNoDiscount } = useCart();
 
   function setFixedSideBar() {
     if (window.scrollY >= 640) {
@@ -89,17 +89,19 @@ const App = () => {
         </div>
       )}
 
-      <div className="md:hidden w-full fixed bottom-0 bg-white py-2 px-4 grid grid-cols-2 items-center border border-t-custom-grey">
-        <div className=" font-semibold text-base">
-          ₹{totalCartCost}{" "}
-          <span className=" font-normal text-sm line-through text-custom-grey-4">
-            ₹{totalConstNoDiscount}
-          </span>
+      {cart.length > 0 && (
+        <div className="md:hidden w-full fixed bottom-0 bg-white py-2 px-4 grid grid-cols-2 items-center border border-t-custom-grey">
+          <div className=" font-semibold text-base">
+            ₹{totalCartCost}{" "}
+            <span className=" font-normal text-sm line-through text-custom-grey-4">
+              ₹{totalConstNoDiscount}
+            </span>
+          </div>
+          <div className=" py-[14px] px-4 rounded-lg font-semibold text-sm bg-add-cart-text text-white text-center">
+            View Cart
+          </div>
         </div>
-        <div className=" py-[14px] px-4 rounded-lg font-semibold text-sm bg-add-cart-text text-white text-center">
-          View Cart
-        </div>
-      </div>
+      )}
     </div>
   );
 };
