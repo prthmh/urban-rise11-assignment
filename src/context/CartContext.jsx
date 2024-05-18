@@ -44,7 +44,9 @@ export const CartProvider = ({ children }) => {
   const totalConstNoDiscount = useMemo(() => {
     return cart.reduce(
       (total, prod) =>
-        total + prod.qty * Number(prod.item_details.ogPrice.slice(1)),
+        prod.item_details.ogPrice
+          ? total + prod.qty * Number(prod.item_details.ogPrice.slice(1))
+          : total,
       0
     );
   }, [cart]);
