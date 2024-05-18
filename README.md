@@ -1,8 +1,13 @@
-# React + Vite
+This is an assignemnt I did for Rise 11 Technologies. Task was to replicate the UI, make it responsive and to have add to cart functionality.
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+[Live Link](https://urban-rise11-assignment.vercel.app/)
 
-Currently, two official plugins are available:
+[Demo Video](https://youtu.be/tbbO4kFB330)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+[Original Website](https://www.urbancompany.com/cart?city=city_delhi_v2&category=mens_grooming)
+
+### Tech Stack
+- React JS
+- Tailwind CSS
+- React Icons
+- Tailwind Merge
