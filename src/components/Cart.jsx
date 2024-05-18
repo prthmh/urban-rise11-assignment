@@ -1,13 +1,22 @@
 import cartBird from "../assets/cart-bird.png";
 import CredComp from "./CredComp";
 import quality from "../assets/quality.jpg";
+import { useCart } from "../context/CartContext";
+import CartItems from "./CartItems";
 
 const Cart = () => {
+  const { cart } = useCart();
   return (
     <div className=" p-8">
       <div className=" border border-custom-grey-3 rounded-md flex justify-center items-center flex-col gap-4 py-3">
-        <img src={cartBird} />
-        <p className=" text-neutral-500">No items in your cart</p>
+        {cart.length > 0 ? (
+          <CartItems />
+        ) : (
+          <>
+            <img src={cartBird} />
+            <p className=" text-neutral-500">No items in your cart</p>
+          </>
+        )}
       </div>
 
       <CredComp />

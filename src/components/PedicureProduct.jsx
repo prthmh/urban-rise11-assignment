@@ -1,6 +1,20 @@
+import { useEffect, useState } from "react";
 import RatingComp from "./RatingComp";
+import { useCart } from "../context/CartContext";
 
 const PedicureProduct = ({ item }) => {
+  const [itemInCart, setItemInCart] = useState({});
+  const { cart, addToCart, removeFromCart } = useCart();
+
+  useEffect(() => {
+    const foundItem = cart.find(
+      (prod) => prod.item_details.title === item.title
+    );
+    setItemInCart(foundItem || null);
+  }, [cart, item.title]);
+
+  console.log(cart);
+
   return (
     <>
       <div className=" flex justify-between gap-3 relative">
@@ -39,8 +53,38 @@ const PedicureProduct = ({ item }) => {
             alt={item.title}
             className=" object-contain size-[120px]"
           />
-          <button className="py-[4px] px-4 sm:py-[6px] sm:px-6 w-fit border-add-cart-color border rounded-lg shadow-lg text-add-cart-text font-semibold text-sm bg-white relative bottom-6 sm:bottom-4">
+          {/* <button className="py-[4px] px-4 sm:py-[6px] sm:px-6 w-fit border-add-cart-color border rounded-lg shadow-lg text-add-cart-text font-semibold text-sm bg-white relative bottom-6 sm:bottom-4">
             Add{" "}
+          </button> */}
+
+          <button className="relative bottom-6 sm:bottom-4">
+            {itemInCart && itemInCart.qty ? (
+              <span className="bg-white flex items-center justify-center border-add-cart-color border rounded-lg shadow-lg text-add-cart-text font-semibold text-sm">
+                <span
+                  className="text-xl hover:bg-[rgba(197,180,245,0.7)] px-2 overflow-hidden rounded-l-lg pb-1 cursor-pointer"
+                  onClick={() => removeFromCart(itemInCart.id)}
+                >
+                  -
+                </span>
+                <span className="px-1">{itemInCart.qty}</span>
+                <span
+                  className="text-xl hover:bg-[rgba(197,180,245,0.7)] px-2 overflow-hidden rounded-r-lg pb-1 cursor-pointer"
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    addToCart(item);
+                  }}
+                >
+                  +
+                </span>
+              </span>
+            ) : (
+              <span
+                onClick={() => addToCart(item)}
+                className="bg-white px-6 py-1 border-add-cart-color border rounded-lg shadow-lg text-add-cart-text font-semibold text-sm hover:bg-[rgba(197,180,245,0.7)]"
+              >
+                Add
+              </span>
+            )}
           </button>
         </div>
       </div>

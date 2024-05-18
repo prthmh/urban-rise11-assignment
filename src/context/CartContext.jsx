@@ -1,4 +1,4 @@
-import { createContext, useContext, useState } from "react";
+import { createContext, useContext, useMemo, useState } from "react";
 
 export const CartContext = createContext();
 
@@ -33,8 +33,32 @@ export const CartProvider = ({ children }) => {
     setCart(filteredCart);
   };
 
+  const totalCartCost = useMemo(() => {
+    return cart.reduce(
+      (total, prod) =>
+        total + prod.qty * Number(prod.item_details.price.slice(1)),
+      0
+    );
+  }, [cart]);
+
+  const totalConstNoDiscount = useMemo(() => {
+    return cart.reduce(
+      (total, prod) =>
+        total + prod.qty * Number(prod.item_details.ogPrice.slice(1)),
+      0
+    );
+  }, [cart]);
+
   return (
-    <CartContext.Provider value={{ cart, addToCart, removeFromCart }}>
+    <CartContext.Provider
+      value={{
+        cart,
+        addToCart,
+        removeFromCart,
+        totalCartCost,
+        totalConstNoDiscount,
+      }}
+    >
       {children}
     </CartContext.Provider>
   );
