@@ -3,7 +3,7 @@ import RatingComp from "./RatingComp";
 const PedicureProduct = ({ item }) => {
   return (
     <>
-      <div className=" flex justify-between gap-3">
+      <div className=" flex justify-between gap-3 relative">
         <div className="flex flex-col gap-2 w-[300px]">
           <p className=" text-base font-bold text-black-1">{item.title}</p>
           <RatingComp
@@ -20,7 +20,7 @@ const PedicureProduct = ({ item }) => {
 
           <div className="border-b border-dashed border-neutral-300 w-full"></div>
 
-          <ul className="list-disc pl-4 flex flex-col gap-2">
+          <ul className="list-disc pl-4 flex flex-col gap-1">
             {item.details.map((d, i) => (
               <li key={i} className=" text-xs font-bold text-neutral-700">
                 {d}
@@ -33,9 +33,13 @@ const PedicureProduct = ({ item }) => {
           </p>
         </div>
 
-        <div className="relative">
-          <img src={item.img} alt={item.title} className=" object-contain" />
-          <button className="py-[6px] px-6 border-add-cart-color border rounded-lg shadow-lg text-add-cart-text font-semibold text-sm absolute right-7 bottom-3 bg-white">
+        <div className="flex flex-col items-center">
+          <img
+            src={item.img}
+            alt={item.title}
+            className=" object-contain size-[120px]"
+          />
+          <button className="py-[6px] px-6 w-fit border-add-cart-color border rounded-lg shadow-lg text-add-cart-text font-semibold text-sm bg-white relative bottom-4">
             Add{" "}
           </button>
         </div>
